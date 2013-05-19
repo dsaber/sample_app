@@ -1,16 +1,33 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
-	<h1>Welcome to SaberTweets</h1>
-	<h2>
-		I created this site by reading the fantastic <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>, by Michael Hartl.
-	</h2>
-	<h3>
-		I have named the site SaberTweets, since my name is Dan Saber. Don't let the sheer creativity prevent you from signing up and experiencing my painfully elementary programming ability firsthand! 
-	</h3>
+<% if signed_in? %>
+	<div class="row">
+		<aside class="span4">
+			<section>
+				<%= render 'shared/user_info' %>
+			</section>
+			<section>
+				<%= render 'shared/micropost_form' %>
+			</section>
+		</aside>
+		<div class="span8">
+			<h3>Feed</h3>
+			<%= render 'shared/feed' %>
+		</div> 
+	</div>
+<% else %>
+	<div class="center hero-unit">
+		<h1>Welcome to SaberTweets</h1>
+		<h2>
+			I created this site by reading the fantastic <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>, by Michael Hartl.
+		</h2>
+		<h3>
+			I have named the site SaberTweets, since my name is Dan Saber. Don't let the sheer creativity prevent you from signing up and experiencing my painfully elementary programming ability firsthand! 
+		</h3>
 
-	<%= link_to "Sign up now", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+		<%= link_to "Sign up now", signup_path, class: "btn btn-large btn-primary" %>
+	</div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+	<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %>
 
 
